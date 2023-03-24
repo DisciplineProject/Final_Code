@@ -1,0 +1,87 @@
+{% extends 'base.html' %}
+ 
+{% block content %}
+<style>
+    h1 {
+        margin-top: 2%;
+        margin-right: auto;
+        margin-left: auto;
+    }
+    b {
+        float: left;
+
+        margin-top: 2%;
+        margin-bottom: 2%;
+    }
+    #imagefield1 {
+        margin-left: 200px;
+        border: 1px solid #ccc;
+        width: 180px;
+    }
+    #imagefield2 {
+        margin-left: 250px;
+        border: 1px solid #ccc;
+        width: 180px;
+    }
+    #imagefield3 {
+        margin-left: 50px;
+        border: 1px solid #ccc;
+        width: 180px;
+    }
+
+    table {
+        width : 50%;
+    }
+    tr:hover {
+        background-color: #CBFFB4};
+</style>
+
+    <h1>{{framename}}</h1>
+    <b>
+    <b id="imagefield1" class="gallery">
+        <img style="border-style: solid;" src="{{motorcyclepic_path}}" alt="motorcyclepic" width="400" height="600">
+    </b>
+    <b id="imagefield2">
+        <img id="lic1" style="border-style: solid;" src="{{licensepic1_path}}" alt="licensepic1" width="300" height="300">
+    </b>
+    </b>
+
+    <table class="table table-bordered table-striped">
+        <tbody>
+            <tr>
+                <td style="background-color: lightgrey;" width="200">ไฟล์</td>
+                <td>{{ filename }}</td>
+            </tr>
+            <tr>
+                <td style="background-color: lightgrey;">เลขทะเบียน</td>
+                <td>{{ license_num }}</td>
+            </tr>
+            <tr>
+                <td style="background-color: lightgrey;">จำนวนคนซ้อนเกิน</td>
+                <td>{{ over_person }}</td>
+            </tr>
+            <tr>
+                <td style="background-color: lightgrey;">ไม่สวมหมวกนิรภัย</td>
+                <td>{{ not_wear_helmet }}</td>
+            </tr>
+            <tr>
+                <td style="background-color: lightgrey;">timestamp</td>
+                <td>{{ timestamp }}</td>
+            </tr>
+        </tbody>
+        <tfoot>
+            <tr>                
+                <td style="background-color: lightgrey;">สถานะการตรวจสอบ</td>
+                {% if edit_status %}
+                <td><b class="btn btn-success">checked</b></td>
+                {% else %}
+                <td><b class="btn btn-danger">unchecked</b></td>
+                {% endif %}
+            </tr>
+        </tfoot>
+      </table>
+
+      <a href="/" class="btn btn-primary mb-3">Back</a> | <a href="/edit/{{framename}}" class="btn btn-primary mb-3">Edit</a>
+
+
+{% endblock content %}

@@ -1,0 +1,91 @@
+{% extends 'base.html' %}
+ 
+{% block content %}
+<style>
+    h1 {
+        margin-top: 2%;
+        margin-right: auto;
+        margin-left: auto;
+    }
+    b {
+        float: left;
+        margin-top: 2%;
+        margin-bottom: 2%;
+    }
+    #imagefield1 {
+        margin-left: 100px;
+        border: 1px solid #ccc;
+        width: 180px;
+    }
+    #imagefield2 {
+        margin-left: 250px;
+        border: 1px solid #ccc;
+        width: 180px;
+    }
+    #imagefield3 {
+        margin-left: 50px;
+        border: 1px solid #ccc;
+        width: 180px;
+    }
+    form{
+        margin-left: 78%;
+        margin-top: 5%;
+        padding: 10px;
+        
+    }
+    div.edit_button {
+        display: flex;
+    }
+
+</style>
+    <h1>{{framename}}</h1>
+    <b>
+    <b id="imagefield1" class="gallery">
+        <img style="border-style: solid;" src="{{data.motorcyclepic_path}}" alt="motorcyclepic" width="400" height="600">
+    </b>
+    <b id="imagefield2">
+        <img id="lic1" style="border-style: solid;" src="{{data.licensepic1_path}}" alt="licensepic1" width="300" height="300">
+
+    </b>
+    </b>
+
+    <form action="/edit/{{data.framename}}" method="POST" enctype="multipart/form-data" style="background-color: #CBFFB4">
+        <div class="mb-3" width="400">
+            <label><b>เลขทะเบียน</b></label>
+            <input type = "text" name = "license_num" placeholder = "license_num" class="form-control" value="{{data.license_num}}"/>
+        </div> 
+        <div class="mb-3">
+            <label for="over_person"><b>จำนวนคนซ้อนเกิน</b></label><br>
+            {% if data.over_person %}
+            <input type = "radio" id="over_person" name = "over_person" value="true" checked/>
+            <label for="over_person">True</label><br>
+            <input type = "radio" id="over_person" name = "over_person" value="false"/>
+            <label for="over_person">False</label><br>
+            {% else %}
+            <input type = "radio" id="over_person" name = "over_person" value="true"/>
+            <label for="over_person">True</label><br>
+            <input type = "radio" id="over_person" name = "over_person" value="false" checked/>
+            <label for="over_person">False</label><br>
+            {% endif %}
+        </div>
+        <div class="mb-3">
+            <label for="not_wear_helmet"><b>ไม่สวมหมวกนิรภัย</b></label><br>
+            {% if data.not_wear_helmet %}
+            <input type = "radio" id="not_wear_helmet" name = "not_wear_helmet" value="true" checked/>
+            <label for="not_wear_helmet">True</label><br>
+            <input type = "radio" id="not_wear_helmet" name = "not_wear_helmet" value="false"/>
+            <label for="not_wear_helmet">False</label><br>
+            {% else %}
+            <input type = "radio" id="not_wear_helmet" name = "not_wear_helmet" value="true"/>
+            <label for="not_wear_helmet">True</label><br>
+            <input type = "radio" id="not_wear_helmet" name = "not_wear_helmet" value="false" checked/>
+            <label for="not_wear_helmet">False</label><br>
+            {% endif %}
+            
+        </div> 
+     
+        <div class="edit_button">
+            <a href="/getdata/framename/{{data.framename}}" class="btn btn-danger">Cancel</a> | <input type = "submit" value = "Update" class="btn btn-success"/>  
+        </div>
+     </form> 
+{% endblock content %}
